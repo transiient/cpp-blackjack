@@ -75,25 +75,26 @@ void BlackJack::startGame() {
 
 	// Load a new card deck
 	Deck deck;
-	//addCardToPlayerDeck(deck.getRandomCardNoDuplicate(mGameState.PlayerGS.currentCards));
-	addCardToPlayerDeck(deck.getRandomCardNoDuplicate(mGameState.PlayerGS.currentCards));
-	addCardToPlayerDeck(deck.getRandomCardNoDuplicate(mGameState.PlayerGS.currentCards));
+	addCardToPlayerDeck(deck.getRandomCardNoDuplicate());
+	addCardToPlayerDeck(deck.getRandomCardNoDuplicate());
 
 	progress = 50;
 	std::cout << progress << '%' << '\r' << std::flush;
 
 	// Load another deck for AI
-	addCardToAIDeck(deck.getRandomCardNoDuplicate(mGameState.AiGS.currentCards));
-	addCardToAIDeck(deck.getRandomCardNoDuplicate(mGameState.AiGS.currentCards));
+	addCardToAIDeck(deck.getRandomCardNoDuplicate());
+	addCardToAIDeck(deck.getRandomCardNoDuplicate());
 
 	progress = 99;
 	std::cout << progress << '%' << '\r' << std::flush;
 
 	system("CLS");
 
-	printf("Welcome! You have two cards - they are the %s of %s and the %s of %s.",
-		mGameState.PlayerGS.currentCards[0].value,
-		mGameState.PlayerGS.currentCards[0].suit,
-		mGameState.PlayerGS.currentCards[1].value,
-		mGameState.PlayerGS.currentCards[1].suit);
+	printf("Welcome! You have two cards - they are the %c of %c and the %c of %c.",
+		&mGameState.PlayerGS.currentCards[0].value,
+		&mGameState.PlayerGS.currentCards[0].suit,
+		&mGameState.PlayerGS.currentCards[1].value,
+		&mGameState.PlayerGS.currentCards[1].suit); // access violation here :/
+
+	system("PAUSE");
 }
